@@ -157,13 +157,16 @@ export async function criarUsuarioAction(data) {
   revalidatePath('/')
 }
 
+// ... resto do arquivo actions.jsx ...
+
 export async function popularBancoAction() {
   const hashedPassword = await bcrypt.hash("123", 10);
 
   const usersSeed = [
     { name: "Admin Geral", email: "admin", password: hashedPassword, role: "admin", cnpj: "00.000.000/0001-91", company: "CAIOLOG" },
     { name: "Magazine Luiza", email: "magalu", password: hashedPassword, role: "cliente", cnpj: "47.960.950/0001-21", company: "Magazine Luiza S.A." },
-    { name: "Carlos Motorista", email: "carlos", password: hashedPassword, role: "motorista", cnpj: "12345678900", phone: "(11) 98888-8888" },
+    // CORREÇÃO: Removido o campo 'phone' que não existe mais no banco
+    { name: "Carlos Motorista", email: "carlos", password: hashedPassword, role: "motorista", cnpj: "12345678900" }, 
     { name: "Americanas S.A.", email: "americanas", password: hashedPassword, role: "cliente", cnpj: "33.000.118/0001-36", company: "Americanas" }
   ];
 
@@ -172,7 +175,7 @@ export async function popularBancoAction() {
     if (!existe) { await prisma.user.create({ data: u }); }
   }
   
-  // Veículos (sem alterações necessárias)
+  // Veículos (sem alterações)
   const veiculosSeed = [
     { placa: "ABC-1234", modelo: "Fiat Fiorino", tipo: "Furgão", capacidade: "800kg", status: "ativo", ano: 2022 },
     { placa: "XYZ-9876", modelo: "Mercedes Atego", tipo: "Caminhão", capacidade: "5ton", status: "ativo", ano: 2021 }
