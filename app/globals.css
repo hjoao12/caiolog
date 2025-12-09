@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* app/globals.css */
+
+/* Sensação de App Nativo */
+html, body {
+  overscroll-behavior-y: none; /* Evita o "bounce" elástico do iPhone */
+  -webkit-tap-highlight-color: transparent; /* Remove o quadrado azul ao clicar */
+}
+
+/* Melhora botões no celular */
+button {
+  touch-action: manipulation; /* Melhora a resposta do toque */
+}
+
+/* Esconde barra de rolagem mas mantém funcional */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
