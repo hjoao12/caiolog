@@ -2,7 +2,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["linux-musl"]
+  // "native" permite rodar no seu Windows
+  // "rhel-openssl-3.0.x" é o padrão atual do Vercel/AWS Linux
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
